@@ -1,0 +1,11 @@
+defaults:
+    - _self_
+    - removal: bfs_sequential
+    - ../architecture@insertion.architecture: precomp/constant_1_cls
+    - ../architecture@halting.architecture: rgcn/classifier
+
+halting:
+    architecture:
+        params:
+            ffn_config:
+                ffn_out_dim: 1

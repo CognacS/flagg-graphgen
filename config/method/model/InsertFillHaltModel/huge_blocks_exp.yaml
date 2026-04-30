@@ -1,0 +1,11 @@
+defaults:
+    - _self_
+    - removal: exp_categorical_huge
+    - ../architecture@insertion.architecture: rgcn/classifier
+    - ../architecture@halting.architecture: rgcn/classifier
+
+halting:
+    architecture:
+        params:
+            ffn_config:
+                ffn_out_dim: 1

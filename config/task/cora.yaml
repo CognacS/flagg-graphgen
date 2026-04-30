@@ -1,0 +1,22 @@
+defaults:
+  - dataset: cora
+  - pre_transform: to_onehot
+  - test: generic-digress
+
+test:
+    graph:
+        how_many_to_generate: 1
+        extended_metrics: true
+        metrics_overrides:
+            graph_degree:
+                compute_emd: false
+            graph_clustering:
+                compute_emd: false
+            graph_spectre:
+                compute_emd: false
+            graph_orbit:
+                compute_emd: false
+            graph_nodes:
+                compute_emd: false
+            graph_eccentricity:
+                compute_emd: false

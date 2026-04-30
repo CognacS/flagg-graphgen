@@ -1,0 +1,80 @@
+# @package _global_
+defaults:
+ - override /task: cora
+ - override /logger: wandb
+ - override /method: ifh_sparser
+ - override /method/trainer: base_trainer
+ - override /method/dataloader: single_graph
+ - override /method/callbacks: ckpt_ema_degree
+ - override /method/model/InsertFillHaltModelSparser: [base, use_digress_marg_unf, huge_blocks]
+
+
+method:
+    model:
+        InsertFillHaltModelSparser:
+            training:
+                embed_time: true
+                num_subsamples: 5
+                first_subsampl: true
+                perm_select: false
+                pos_weight: 3
+                sample_mode: simple
+                fix_num_nodes: true
+            features:
+                - indegree
+                - nodes_num
+                - spectral
+            halting:
+                architecture:
+                    name: MLPModel
+            removal:
+                process:
+                    params:
+                        permutation_type: invexp
+            filler:
+                model:
+                    DiscreteDenoisingDiffusionModel:
+                        embed_time: true
+                        features:
+                            - indegree
+                            - nodes_num
+                        denoising:
+                            architecture:
+                                GraphTransformerUnfrozen:
+                                    encdec_hidden_dims:
+                                        x: 256
+                                        e: 512
+                                        y: 128
+
+                                    transf_inout_dims:
+                                        x: 256
+                                        e: 512
+                                        y: 64
+
+                                    transf_ffn_dims:
+                                        x: 256
+                                        e: 512
+                                        y: 128
+
+                                    transf_hparams:
+                                        heads: 16
+
+                                    num_layers: 7
+            validation:
+                how_many_to_generate: 1
+    trainer:
+        max_epochs: 30000
+        log_every_n_steps: 400
+        check_val_every_n_epoch: 1000
+        gradient_clip_val: 1.0
+
+logger:
+    WandbLogger:
+        project: ggen-journal-final
+        group: cora-sparse
+
+config_name: cora-sparse
+
+
+mode: train+eval
+compile: false

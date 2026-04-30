@@ -1,0 +1,3 @@
+defaults:
+  - ifh@
+  - override model/InsertFillHaltModel: [base, use_digress, oneshot]

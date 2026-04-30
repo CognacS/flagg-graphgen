@@ -1,0 +1,7 @@
+name: RGCNModel
+params:
+    output_type: encoder
+    gnn_encoder_config:
+        hidden_channels: 128
+        num_layers: 7
+        jk: null

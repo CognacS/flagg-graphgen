@@ -1,0 +1,21 @@
+defaults:
+  - _self_
+  - ../architecture@filler.encoder: rgcn/encoder
+
+optimizer:
+    lr: 0.0002
+    weight_decay: 1.0e-12
+
+insertion:
+    loss: {}
+
+halting:
+    loss: {}
+
+generation:
+    conditional: false
+    batch_size: 256
+
+validation:
+    do_assignment: true
+    how_many_to_generate: 256

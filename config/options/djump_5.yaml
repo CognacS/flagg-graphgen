@@ -1,0 +1,9 @@
+# @package _global_
+method:
+    model:
+        InsertFillHaltModel:
+            filler:
+                model:
+                    DiscreteDenoisingDiffusionModel:
+                        generation:
+                            denoising_jump: 5

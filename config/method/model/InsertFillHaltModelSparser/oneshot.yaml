@@ -1,0 +1,4 @@
+defaults:
+    - removal: oneshot
+    - ../architecture@insertion.architecture: precomp/empirical_distribution
+    - ../architecture@halting.architecture: precomp/constant_1_rgr

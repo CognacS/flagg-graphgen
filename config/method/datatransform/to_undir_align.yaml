@@ -1,0 +1,4 @@
+defaults:
+    - transforms@train: [ifh, align_labels]
+    - transforms@valid: [ifh, align_labels]
+    - transforms@test: [ifh, align_labels]

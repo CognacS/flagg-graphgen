@@ -1,0 +1,10 @@
+process:
+    name: permutation
+    params:
+        permutation_type: exp
+schedule:
+    name: categorical_removal
+    params:
+        block_size_options: [1, 4, 16, 32]
+timesampler:
+    name: uniform

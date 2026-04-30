@@ -1,0 +1,43 @@
+defaults:
+  - ../architecture@encoder: rgcn/encoder_gat
+  - _self_
+
+encoder:
+    out_channels: 512
+    params:
+        gnn_encoder_config:
+            hidden_channels: 512
+            num_layers: 5
+
+optimizer:
+    lr: 0.0002
+    weight_decay: 1.0e-12
+
+new_degree:
+    loss: {}
+    params:
+        hidden_dim: 128
+        n_layers: 3
+        dropout: 0.1
+
+properties_network:
+    loss: {}
+    params:
+        adjenc_cfg:
+            num_layers: 2
+            hidden_channels: 512
+            dropout: 0.1
+        posenc_dim: 128
+        wnn_cfg:
+            n_layers: 2
+            hidden_dim: 512
+            dropout: 0.1
+        aggregation: mean
+
+generation:
+    conditional: false
+    batch_size: 256
+
+validation:
+    do_assignment: true
+    how_many_to_generate: 256

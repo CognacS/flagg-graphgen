@@ -1,0 +1,7 @@
+defaults:
+  - dataloader: base_dataloader
+  - datatransform: ifh
+  - model: mifh
+  - trainer: base_trainer
+  - callbacks: ckpt
+  - dataset_wrapper: null

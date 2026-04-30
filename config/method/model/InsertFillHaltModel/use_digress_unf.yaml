@@ -1,0 +1,2 @@
+defaults:
+  - ..@filler.model: digress_uniform_unfrozen

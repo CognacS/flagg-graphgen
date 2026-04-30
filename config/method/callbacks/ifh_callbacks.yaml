@@ -1,0 +1,6 @@
+defaults:
+  - checkpoint/ifh_checkpoint
+  - checkpoint/base_checkpoint
+  - early_stopping/ifh_early_stopping
+
+

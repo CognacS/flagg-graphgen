@@ -1,0 +1,4 @@
+defaults:
+    - transforms@train: ifh
+    - transforms@valid: ifh
+    - transforms@test: ifh

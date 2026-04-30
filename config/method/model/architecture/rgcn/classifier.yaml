@@ -1,0 +1,12 @@
+name: RGCNModel
+params:
+    output_type: classifier
+    gnn_encoder_config:
+        hidden_channels: 128
+        num_layers: 7
+        jk: null
+    encoder_out_channels: 128
+    ffn_config:
+        aggregator_fn: mean
+        ffn_hidden_dim: 128
+        ffn_num_layers: 2

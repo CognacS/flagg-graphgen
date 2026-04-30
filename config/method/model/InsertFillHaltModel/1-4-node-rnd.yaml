@@ -1,0 +1,12 @@
+defaults:
+    - _self_
+    - removal: rnd_categorical_1_4
+    - ../architecture@insertion.architecture: rgcn/classifier
+    - ../architecture@halting.architecture: rgcn/classifier
+
+
+halting:
+    architecture:
+        params:
+            ffn_config:
+                ffn_out_dim: 1

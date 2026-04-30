@@ -1,0 +1,8 @@
+defaults:
+  - dataset: ego-small
+  - pre_transform: to_onehot
+  - test: generic-cdgs
+
+test:
+    graph:
+        how_many_to_generate: 1024

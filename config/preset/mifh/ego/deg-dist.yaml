@@ -1,0 +1,64 @@
+# @package _global_
+defaults:
+ - override /task: ego-cdgs
+ - override /logger: wandb
+ - override /method: mifh
+ - override /method/trainer: base_trainer
+ - override /method/dataloader: [base_dataloader, batch_2, workers_8]
+ - override /method/callbacks: ckpt_ema_gin
+ - override /method/model/ModularInsertFillHaltModel: [base, 1-node, prop_deg_dist]
+
+
+method:
+    model:
+        ModularInsertFillHaltModel:
+            training:
+                embed_time: true
+            features:
+                - indegree
+                - nodes_num
+            encoder:
+                params:
+                    gnn_encoder_config:
+                        num_layers: 5
+                        hidden_channels: 256
+                out_channels: 512
+            removal:
+                process:
+                    params:
+                        permutation_type: causal_invexp
+            new_degree:
+                params:
+                    n_layers: 3
+            properties_network:
+                params:
+                    wnn_cfg:
+                        dropout: 0.1
+                        n_layers: 2
+                        hidden_dim: 512
+                    adjenc_cfg:
+                        dropout: 0.1
+                        num_layers: 2
+                        hidden_channels: 512
+
+    trainer:
+        max_epochs: 2000
+        log_every_n_steps: 400
+        check_val_every_n_epoch: 100
+        gradient_clip_val: 1.0
+
+    callbacks:
+        early_stopping:
+            EarlyStopping:
+                patience: 10
+
+logger:
+    WandbLogger:
+        project: ggen-journal-final
+        group: ego-mifh
+
+config_name: ego-mifh
+
+
+mode: train+eval
+compile: false

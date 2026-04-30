@@ -1,0 +1,11 @@
+process:
+    name: permutation
+    params:
+        permutation_type: random
+schedule:
+    name: binomial_removal
+    params:
+        binomial_schedule_type: adaptive_linear_removal
+        velocity: 3.0
+timesampler:
+    name: uniform

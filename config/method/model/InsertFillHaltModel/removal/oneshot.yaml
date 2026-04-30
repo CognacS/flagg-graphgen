@@ -1,0 +1,6 @@
+process:
+    name: oneshot
+schedule:
+    name: oneshot_removal
+timesampler:
+    name: uniform

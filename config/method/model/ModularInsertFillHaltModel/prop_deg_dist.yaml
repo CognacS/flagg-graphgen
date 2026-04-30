@@ -1,0 +1,4 @@
+properties:
+    - degree: {}
+    - distance: 
+        threshold: 4

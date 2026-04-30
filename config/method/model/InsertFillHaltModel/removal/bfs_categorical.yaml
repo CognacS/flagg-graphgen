@@ -1,0 +1,10 @@
+process:
+    name: permutation
+    params:
+        permutation_type: bfs
+schedule:
+    name: categorical_removal
+    params:
+        block_size_options: ???
+timesampler:
+    name: uniform

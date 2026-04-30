@@ -1,0 +1,59 @@
+# @package _global_
+defaults:
+ - override /task: community-small-cdgs
+ - override /logger: wandb
+ - override /method: mifh
+ - override /method/trainer: base_trainer
+ - override /method/dataloader: single_batch
+ - override /method/callbacks: ckpt_ema_gin
+ - override /method/model/ModularInsertFillHaltModel: [base, 1-node, prop_deg_dist]
+
+
+method:
+    model:
+        ModularInsertFillHaltModel:
+            training:
+                embed_time: true
+            features:
+                - indegree
+                - nodes_num
+            encoder:
+                params:
+                    gnn_encoder_config:
+                        num_layers: 5
+                        hidden_channels: 512
+                out_channels: 512
+            removal:
+                process:
+                    params:
+                        permutation_type: causal_invexp
+            new_degree:
+                params:
+                    n_layers: 3
+            properties_network:
+                params:
+                    wnn_cfg:
+                        dropout: 0.1
+                        n_layers: 2
+                        hidden_dim: 512
+                    adjenc_cfg:
+                        dropout: 0.1
+                        num_layers: 2
+                        hidden_channels: 512
+
+    trainer:
+        max_epochs: 100000
+        log_every_n_steps: 400
+        check_val_every_n_epoch: 2000
+        gradient_clip_val: 1.0
+
+logger:
+    WandbLogger:
+        project: ggen-journal-final
+        group: comm-mifh
+
+config_name: comm-mifh
+
+
+mode: train+eval
+compile: false

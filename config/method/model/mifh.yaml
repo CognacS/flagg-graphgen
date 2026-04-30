@@ -1,0 +1,2 @@
+defaults:
+ - ModularInsertFillHaltModel: [base, 1-node]

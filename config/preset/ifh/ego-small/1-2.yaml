@@ -1,0 +1,51 @@
+# @package _global_
+defaults:
+ - override /task: ego-small-cdgs
+ - override /logger: wandb
+ - override /method: ifh
+ - override /method/trainer: base_trainer
+ - override /method/dataloader: single_batch
+ - override /method/callbacks: ckpt_ema_gin
+ - override /method/model/InsertFillHaltModel: [base, use_digress_marg_unf, 1-4-node]
+
+
+method:
+    model:
+        InsertFillHaltModel:
+            training:
+                embed_time: true
+            features:
+                - indegree
+                - nodes_num
+                - spectral
+            halting:
+                architecture:
+                    name: MLPModel
+            removal:
+                schedule:
+                    params:
+                        block_size_options: [1, 2]
+            filler:
+                model:
+                    DiscreteDenoisingDiffusionModel:
+                        embed_time: true
+                        features:
+                            - indegree
+                            - nodes_num
+                            - spectral
+    trainer:
+        max_epochs: 100000
+        log_every_n_steps: 400
+        check_val_every_n_epoch: 2000
+        gradient_clip_val: 1.0
+
+logger:
+    WandbLogger:
+        project: ggen-journal-final
+        group: egosm-sm
+
+config_name: egosm-sm
+
+
+mode: train+eval
+compile: true

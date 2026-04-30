@@ -1,0 +1,11 @@
+process:
+    name: permutation
+    params:
+        permutation_type: bfs
+schedule:
+    name: binomial_removal
+    params:
+        binomial_schedule_type: adaptive_linear_linear
+        velocity: 3.0
+timesampler:
+    name: uniform

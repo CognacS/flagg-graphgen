@@ -1,0 +1,8 @@
+process:
+    name: cluster
+    params:
+        permutation_type: bfs
+schedule:
+    name: cluster
+timesampler:
+    name: uniform

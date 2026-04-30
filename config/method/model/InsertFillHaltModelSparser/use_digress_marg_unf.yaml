@@ -1,0 +1,3 @@
+defaults:
+  - ..@filler.model: digress_marginal_unfrozen
+  
